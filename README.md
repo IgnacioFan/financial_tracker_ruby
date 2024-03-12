@@ -1,24 +1,23 @@
-# README
+# Financial Tracker Ruby
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Design the architecture of the system considering the requirements.
 
-Things you may want to cover:
+## Requirements
+1. As a user, I can crud a user(role: admin, owner, merchant, client)
+2. As a user, I can crud a product
+3. As a user, I can crud an order(status: pending, paid, canceled) 
+4. As a user, I can read when a order gets paid
+5. As a user, I can read the financial report by week and by month
+    - Pie chart for products
+    - line chart for selling rate by weekday
 
-* Ruby version
+## Database Schema
+1. users(id, name, email, role)
+2. products(id, name, description, price)
+3. orders(id, status, creator_id)
+4. order_items(id, order_id, product_id)
+5. order_transac(id, order_id, amount)
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Others
+1. Google OAuth Sign-up and Log-in
+2. Manually backup report to Google drive (opetional)
