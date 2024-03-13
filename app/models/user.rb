@@ -5,13 +5,15 @@ class User < ApplicationRecord
     client: 3
   }
 
-  before_validation :set_client, :on => :create
+  before_validation :default_role, :on => :create
 
   validates_presence_of :name
 
+  has_many :products
+
   private
 
-  def set_client
+  def default_role
     self.role = ROLE[:client]
   end
 end
