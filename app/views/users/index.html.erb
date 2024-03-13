@@ -1,14 +1,28 @@
-<p style="color: green"><%= notice %></p>
+<%= render "layouts/header", title: "Clients" %>
 
-<h1>Users</h1>
-
-<div id="users">
-  <% @users.each do |user| %>
-    <%= render user %>
-    <p>
-      <%= link_to "Show this user", user %>
-    </p>
+<div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 rounded-lg" id="notice"><%= notice %></p>
   <% end %>
+  <table class="w-full bg-white border shadow-lg text-center text-sm">
+    <tbody>
+      <tr class="mt-2 border-b border-gray-200">
+        <th class="px-4 py-2">Name</th>
+        <th class="px-4 py-2">Email</th>
+        <th class="px-4 py-2 flex">
+          <%= link_to "New", new_user_path, class: "rounded-lg px-3 py-1.5 bg-green-400 text-white font-medium" %>
+        </th>
+      </tr>
+      <% @users.each do |user| %>
+        <tr class="mt-2 border-b border-gray-200">
+          <td class="px-4 py-2"><%= user.name %></td>
+          <td class="px-4 py-2"><%= user.email %></td>
+          <td class="px-4 py-2 flex">
+            <%= link_to "Edit", edit_user_path(user), class: "rounded-lg px-3 py-2 bg-gray-100 font-medium" %>
+            <%= button_to "Remove", user_path(user), method: :delete, class: "ml-3 rounded-lg px-3 py-2 text-white bg-red-700 font-medium" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
-
-<%= link_to "New user", new_user_path %>
