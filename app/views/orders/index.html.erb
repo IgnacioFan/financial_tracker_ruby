@@ -1,0 +1,31 @@
+<%= render "layouts/header", title: "Orders" %>
+
+<div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 rounded-lg" id="notice"><%= notice %></p>
+  <% end %>
+  <table class="w-full bg-white border shadow-lg text-center text-sm">
+    <tbody>
+      <tr class="mt-2 border-b border-gray-200">
+        <th class="px-4 py-2">Creator</th>
+        <th class="px-4 py-2">Status</th>
+        <th class="px-4 py-2">Create Time</th>
+        <th class="px-4 py-2 flex">
+          <%= link_to "New", new_order_path, class: "rounded-lg px-3 py-1.5 bg-green-400 text-white font-medium" %>
+        </th>
+      </tr>
+      <% @orders.each do |order| %>
+        <tr class="mt-2 border-b border-gray-200">
+          <td class="px-4 py-2"><%= order.creator.name %></td>
+          <td class="px-4 py-2"><%= order.status %></td>
+          <td class="px-4 py-2"><%= order.created_at.strftime("%Y-%m-%d %H:%M ") %></td>
+          <td class="px-4 py-2 flex">
+            <%= link_to "Edit", edit_order_path(order), class: "rounded-lg px-3 py-2 bg-gray-100 font-medium" %>
+            <%= button_to "Remove", order_path(order), method: :delete, class: "ml-3 rounded-lg px-3 py-2 text-white bg-red-700 font-medium" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
